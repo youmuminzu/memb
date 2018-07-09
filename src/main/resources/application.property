@@ -1,0 +1,8 @@
+#server port configuration
+server.port=8090
+
+#uri-encoding
+server.tomcat.uri-encoding=UTF-8
+
+#view
+spring.mvc.view.prefix=/templates
