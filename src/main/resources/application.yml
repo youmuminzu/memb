@@ -1,7 +1,7 @@
 #server setting
 server:
   port: 8090
-
+##########################################################
 #view files
 spring:
   mvc:
@@ -11,18 +11,56 @@ spring:
     auto: true
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
+##########################################################
+#mybatis
+mybatis:
+  mapperLocation: classpath:/com/croplanet/memb/dao/*.xml
+  mapperScanPackage: com.croplanet.memb.dao
+  configLocation: classpath:/mybatis-config.xml
+##########################################################
 #data sources
-#db1
-db1:
-  datasource:
-    url: jdbc:mysql://localhost:3306/db1?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
-    username: root
-    password: root
-    driverClassName: com.mysql.jdbc.Driver
-#db2
-db1:
-  datasource:
-    url: jdbc:mysql://localhost:3306/db2?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
-    username: root
-    password: root
-    driverClassName: com.mysql.jdbc.Driver
+#mysql
+mysql:
+  dataSourceType: com.alibaba.druid.pool.DruidDataSource
+  #db1
+  db1:
+    datasource:
+      url: jdbc:mysql://localhost:3306/db1?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
+      username: root
+      password: root
+      driverClassName: com.mysql.jdbc.Driver
+      minIdle: 1
+      maxActive: 10
+      initialSize: 1
+      maxWait: 60000
+  #db2
+  db1:
+    datasource:
+      url: jdbc:mysql://localhost:3306/db2?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
+      username: root
+      password: root
+      driverClassName: com.mysql.jdbc.Driver
+      minIdle: 1
+      maxActive: 10
+      initialSize: 1
+      maxWait: 60000
+  #db for global config
+  dbSystem:
+    datasource:
+      url: jdbc:mysql://localhost:3306/dbSystem?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
+      username: root
+      password: root
+      driverClassName: com.mysql.jdbc.Driver
+      type: com.alibaba.druid.pool.DruidDataSourcess
+      minIdle: 1
+      maxActive: 3
+      initialSize: 1
+      maxWait: 60000
+##########################################################
+#tables numbers in each database
+maxTablesPerDatabase: 2
+#data records numbers in each table
+maxRecordsPerTable: 10
+#base name used to generate the name of tables that have same structure
+tableBaseName: user
+
