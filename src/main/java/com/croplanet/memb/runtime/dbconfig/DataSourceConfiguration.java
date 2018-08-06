@@ -1,4 +1,4 @@
-package com.croplanet.memb.config.dbconfig;
+package com.croplanet.memb.runtime.dbconfig;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -28,13 +28,5 @@ public class DataSourceConfiguration {
     public DataSource dataSourceTwo() {
         return DataSourceBuilder.create().type(dataSourceType).build();
     }
-
-    @Bean(name = "dataSourceSystem")
-    @Primary
-    @ConfigurationProperties(prefix = "mysql.dbSystem")
-    public DataSource dataSourceSystem() {
-        return DataSourceBuilder.create().type(dataSourceType).build();
-    }
-
 
 }
