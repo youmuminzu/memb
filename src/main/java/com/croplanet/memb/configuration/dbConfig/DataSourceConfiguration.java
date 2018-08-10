@@ -1,4 +1,4 @@
-package com.croplanet.memb.runtime.dbconfig;
+package com.croplanet.memb.configuration.dbConfig;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -60,6 +60,10 @@ public class DataSourceConfiguration {
         return DataSourceBuilder.create().type(dataSourceType).build();
     }
 
+    /**
+     * all database source should be added in the allDataBases map
+     * @return
+     */
     public Map getAllDatabaseMap() {
         Map allDatabases = new HashMap();
         allDatabases.put(Dbs.db1.getName(), dataSourceOne());

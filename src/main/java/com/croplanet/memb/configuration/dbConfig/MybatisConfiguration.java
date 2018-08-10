@@ -1,18 +1,15 @@
-package com.croplanet.memb.runtime.dbconfig;
+package com.croplanet.memb.configuration.dbConfig;
 
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.datasource.lookup.AbstractRoutingDataSource;
 
-import javax.sql.DataSource;
-import java.util.HashMap;
 import java.util.Map;
 
 @Configuration
@@ -48,8 +45,8 @@ public class MybatisConfiguration {
     public AbstractRoutingDataSource routingDataSourceProxy() {
         Map targetDatabaseSourceMap = dataSourceConfiguration.getAllDatabaseMap();
         AbstractRoutingDataSource routingDataSourceProxy = new RoutingDataSource();
-        routingDataSourceProxy.setDefaultTargetDataSource(targetDatabaseSourceMap.get(
-                DataSourceConfiguration.Dbs.db1.getName()));
+        routingDataSourceProxy.setDefaultTargetDataSource(
+                targetDatabaseSourceMap.get(DataSourceConfiguration.Dbs.db1.getName()));
         routingDataSourceProxy.setTargetDataSources(targetDatabaseSourceMap);
         return routingDataSourceProxy;
     }

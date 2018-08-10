@@ -11,6 +11,16 @@ spring:
     auto: true
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
+  session:
+    store-type: redis
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    jedis:
+      pool:
+        max-active: 2
+        max-idle: 8
+        max-wait: 1000ms
 ##########################################################
 #mybatis
 mybatis:
@@ -34,7 +44,7 @@ mysql:
       initialSize: 1
       maxWait: 60000
   #db2
-  db1:
+  db2:
     datasource:
       url: jdbc:mysql://localhost:3306/db2?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
       username: root
