@@ -1,6 +1,7 @@
 package com.croplanet.memb.runtime.interceptor;
 
 import com.croplanet.memb.utils.MyStringUtil;
+import javafx.fxml.LoadException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
@@ -21,8 +22,9 @@ public class RequestInterceptor implements HandlerInterceptor {
         String userId = request.getParameter("userId");
         String userName = request.getParameter("userName");
         String phoneNumber = request.getParameter("phoneNumber");
-        if (MyStringUtil.isBlank(userId)) {
-
+        String paramsAll = userId + userName + phoneNumber;
+        if (MyStringUtil.isBlank(paramsAll)) {
+            throw new RuntimeException("at least one of those three params: userId, userName, phoneNumber should have value");
         }
         return true;
     }
