@@ -5,10 +5,7 @@ import com.croplanet.memb.runtime.local.LocalContextHolder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.jdbc.datasource.lookup.AbstractRoutingDataSource;
-import org.springframework.stereotype.Component;
 
-
-@Component("routingDataSource")
 public class RoutingDataSource extends AbstractRoutingDataSource {
 
     @Autowired

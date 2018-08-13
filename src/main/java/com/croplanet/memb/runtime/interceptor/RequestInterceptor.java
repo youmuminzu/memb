@@ -8,14 +8,16 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.concurrent.TimeUnit;
 
 @Component
 public class RequestInterceptor implements HandlerInterceptor {
 
-    @Autowired
-    private RedisTemplate<String,String> redisTemplate;
+    @Resource
+    private RedisTemplate<String, Object> redisTemplate;
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         //get userId or userName from request attribute and save in session
@@ -26,6 +28,9 @@ public class RequestInterceptor implements HandlerInterceptor {
         if (MyStringUtil.isBlank(paramsAll)) {
             throw new RuntimeException("at least one of those three params: userId, userName, phoneNumber should have value");
         }
+        redisTemplate.opsForValue().set("userId", 1000);
+//        redisTemplate.expire("userId", 10, TimeUnit.MINUTES);
+
         return true;
     }
 
