@@ -11,7 +11,6 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.concurrent.TimeUnit;
 
 @Component
 public class RequestInterceptor implements HandlerInterceptor {
@@ -29,6 +28,7 @@ public class RequestInterceptor implements HandlerInterceptor {
             throw new RuntimeException("at least one of those three params: userId, userName, phoneNumber should have value");
         }
         redisTemplate.opsForValue().set("userId", 1000);
+        System.out.println("***********this is the interceptor**********");
 //        redisTemplate.expire("userId", 10, TimeUnit.MINUTES);
 
         return true;
