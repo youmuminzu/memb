@@ -5,11 +5,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("hello")
-public class HelloController {
+@RequestMapping("e")
+public class EHelloController {
 
-    @GetMapping("say")
-    public String SayHello() {
-        return "after interceptor";
+    @GetMapping("hello")
+    public String hello() {
+        return "no interceptor";
     }
+
 }

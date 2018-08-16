@@ -28,7 +28,7 @@ public class RequestInterceptor implements HandlerInterceptor {
             throw new RuntimeException("at least one of those three params: userId, userName, phoneNumber should have value");
         }
         redisTemplate.opsForValue().set("userId", 1000);
-        System.out.println("***********this is the interceptor**********");
+        System.out.println("***********this is the preHandle**********");
 //        redisTemplate.expire("userId", 10, TimeUnit.MINUTES);
 
         return true;
@@ -36,11 +36,12 @@ public class RequestInterceptor implements HandlerInterceptor {
 
     @Override
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
+        System.out.println("***********this is the postHandle**********");
 
     }
 
     @Override
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
-
+        System.out.println("***********this is the completion**********");
     }
 }
