@@ -21,6 +21,7 @@ spring:
         max-active: 2
         max-idle: 8
         max-wait: 1000ms
+    database: 8
 ##########################################################
 #mybatis
 mybatis:
