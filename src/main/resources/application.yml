@@ -1,6 +1,11 @@
 #server setting
 server:
   port: 8090
+  error:
+    path: /customer/error
+##########################################################
+#debug model or not
+debug: true
 ##########################################################
 #view files
 spring:
@@ -61,4 +66,5 @@ mysql:
 maxRecordsPerTable: 10
 #base name used to generate the name of tables that have same structure
 tableBaseName: user
+
 

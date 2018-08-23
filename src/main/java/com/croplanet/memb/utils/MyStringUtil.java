@@ -6,7 +6,7 @@ public class MyStringUtil {
         if (string == null) {
             return true;
         }
-        if (String.valueOf(string).trim().isEmpty()) {
+        if (String.valueOf(string).trim().length() == 0) {
             return true;
         }
         return false;

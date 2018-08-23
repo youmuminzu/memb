@@ -9,7 +9,8 @@ import org.springframework.web.bind.annotation.RestController;
 public class HelloController {
 
     @GetMapping("say")
-    public String SayHello() {
+    public String SayHello() throws Exception {
+//        throw new Exception("this is the exception");
         return "after interceptor";
     }
 }
