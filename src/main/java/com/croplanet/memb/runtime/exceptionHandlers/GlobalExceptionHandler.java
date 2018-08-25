@@ -2,12 +2,8 @@ package com.croplanet.memb.runtime.exceptionHandlers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.autoconfigure.web.ErrorProperties;
 import org.springframework.boot.web.servlet.error.ErrorAttributes;
 import org.springframework.boot.web.servlet.error.ErrorController;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
@@ -23,12 +19,8 @@ public class GlobalExceptionHandler implements ErrorController {
 
     @Override
     public String getErrorPath() {
-        return "/customer/error";
+        return "";
     }
 
-    @RequestMapping("/customer/error")
-    @ResponseBody
-    public String error(HttpServletRequest request) {
-        return "this is the error message";
-    }
+
 }

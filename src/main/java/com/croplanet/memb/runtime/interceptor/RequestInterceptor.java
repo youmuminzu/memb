@@ -25,9 +25,12 @@ public class RequestInterceptor implements HandlerInterceptor {
         String phoneNumber = request.getParameter("phoneNumber");
 
         if (MyStringUtil.isBlank(userId) && MyStringUtil.isBlank(userName) && MyStringUtil.isBlank(phoneNumber)) {
-            //throw new RuntimeException("at least one of those three params: userId, userName, phoneNumber should have value");
+            response.setContentType("application/json;charset=utf-8");
+            response.getWriter().print("{\"error\":\"request params error\",\"code\":550," +
+                "\"message\":\"at least one of those three params: userId, userName, phoneNumber should have value\"}");
+            return false;
         }
-        redisTemplate.opsForValue().set("userId", 1000);
+//        redisTemplate.opsForValue().set("userId", 1000);
         System.out.println("***********this is the preHandle**********");
 //        redisTemplate.expire("userId", 10, TimeUnit.MINUTES);
 
