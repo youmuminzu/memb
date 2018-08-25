@@ -13,6 +13,8 @@ public class InterceptorConfiguration implements WebMvcConfigurer {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(requestInterceptor).addPathPatterns("/**").excludePathPatterns("/e/*");
+        registry.addInterceptor(requestInterceptor)
+                .addPathPatterns("/**")
+                .excludePathPatterns("/e/*");
     }
 }

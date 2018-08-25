@@ -1,8 +1,6 @@
 #server setting
 server:
   port: 8090
-  error:
-    path: /customer/error
 ##########################################################
 #debug model or not
 debug: true

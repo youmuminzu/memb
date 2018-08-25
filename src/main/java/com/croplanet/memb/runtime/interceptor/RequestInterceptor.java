@@ -1,8 +1,6 @@
 package com.croplanet.memb.runtime.interceptor;
 
 import com.croplanet.memb.utils.MyStringUtil;
-import javafx.fxml.LoadException;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -19,7 +17,7 @@ public class RequestInterceptor implements HandlerInterceptor {
     private RedisTemplate<String, Object> redisTemplate;
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        //get userId or userName from request attribute and save in session
+        //get userId or userName from request attribute
         String userId = request.getParameter("userId");
         String userName = request.getParameter("userName");
         String phoneNumber = request.getParameter("phoneNumber");
@@ -27,7 +25,7 @@ public class RequestInterceptor implements HandlerInterceptor {
         if (MyStringUtil.isBlank(userId) && MyStringUtil.isBlank(userName) && MyStringUtil.isBlank(phoneNumber)) {
             response.setContentType("application/json;charset=utf-8");
             response.getWriter().print("{\"error\":\"request params error\",\"code\":550," +
-                "\"message\":\"at least one of those three params: userId, userName, phoneNumber should have value\"}");
+                "\"message\":\"at least one of those three params: userId, userName, phoneNumber, should have value\"}");
             return false;
         }
 //        redisTemplate.opsForValue().set("userId", 1000);
