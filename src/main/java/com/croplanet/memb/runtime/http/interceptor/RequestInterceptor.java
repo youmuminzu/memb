@@ -1,6 +1,10 @@
-package com.croplanet.memb.runtime.interceptor;
+package com.croplanet.memb.runtime.http.interceptor;
 
+import com.croplanet.memb.configuration.constConfig.ConstLocalParamKeys;
 import com.croplanet.memb.utils.MyStringUtil;
+import com.croplanet.memb.runtime.http.local.LocalContextHolder;
+import org.apache.tomcat.util.bcel.Const;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -15,6 +19,9 @@ public class RequestInterceptor implements HandlerInterceptor {
 
     @Resource
     private RedisTemplate<String, Object> redisTemplate;
+    @Autowired
+    private  LocalContextHolder localContextHolder;
+
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         //get userId or userName from request attribute
@@ -28,6 +35,12 @@ public class RequestInterceptor implements HandlerInterceptor {
                 "\"message\":\"at least one of those three params: userId, userName, phoneNumber, should have value\"}");
             return false;
         }
+
+        //set the userId in local value
+        if (!MyStringUtil.isBlank(userId)) {
+            localContextHolder.setLocal(ConstLocalParamKeys.LOCAL_KEY_USER_ID,userId);
+        }
+
 //        redisTemplate.opsForValue().set("userId", 1000);
         System.out.println("***********this is the preHandle**********");
 //        redisTemplate.expire("userId", 10, TimeUnit.MINUTES);

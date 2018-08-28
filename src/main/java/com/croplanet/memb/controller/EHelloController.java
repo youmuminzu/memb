@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("e")
+@RequestMapping("exclude")
 public class EHelloController {
 
     @Autowired

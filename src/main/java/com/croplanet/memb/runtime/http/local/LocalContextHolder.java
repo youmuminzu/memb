@@ -1,4 +1,4 @@
-package com.croplanet.memb.runtime.local;
+package com.croplanet.memb.runtime.http.local;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;

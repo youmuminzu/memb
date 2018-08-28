@@ -1,6 +1,6 @@
 package com.croplanet.memb.configuration.httpConfig;
 
-import com.croplanet.memb.runtime.interceptor.RequestInterceptor;
+import com.croplanet.memb.runtime.http.interceptor.RequestInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;

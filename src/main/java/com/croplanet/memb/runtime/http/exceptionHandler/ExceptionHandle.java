@@ -1,4 +1,4 @@
-package com.croplanet.memb.runtime.exceptionHandler;
+package com.croplanet.memb.runtime.http.exceptionHandler;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.ControllerAdvice;
