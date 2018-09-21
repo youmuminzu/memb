@@ -3,22 +3,18 @@ package com.croplanet.memb.runtime.http.interceptor;
 import com.croplanet.memb.configuration.constConfig.ConstLocalParamKeys;
 import com.croplanet.memb.utils.MyStringUtil;
 import com.croplanet.memb.runtime.http.local.LocalContextHolder;
-import org.apache.tomcat.util.bcel.Const;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @Component
 public class RequestInterceptor implements HandlerInterceptor {
 
-    @Resource
-    private RedisTemplate<String, Object> redisTemplate;
     @Autowired
     private  LocalContextHolder localContextHolder;
 
