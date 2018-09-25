@@ -1,18 +1,18 @@
 package com.croplanet.memb.entity;
 
 public class User {
-    private int userId;
+    private long userId;
     private String name;
     private String password;
     private String salt;
     private String createTime;
     private String updateTime;
 
-    public int getUserId() {
+    public long getUserId() {
         return userId;
     }
 
-    public void setUserId(int userId) {
+    public void setUserId(long userId) {
         this.userId = userId;
     }
 

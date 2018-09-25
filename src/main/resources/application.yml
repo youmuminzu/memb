@@ -28,9 +28,8 @@ spring:
 ##########################################################
 #mybatis
 mybatis:
-  mapperLocation: classpath:/com/croplanet/memb/dao/*.xml
-  mapperScanPackage: com.croplanet.memb.dao
-  configLocation: classpath:/mybatis-runtime.xml
+  type-aliases-package: com.croplanet.memb.dao
+  config-location: "classpath: mybatis-config.xml"
 ##########################################################
 #data sources
 #mysql

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.croplanet.memb.dao.UserDao" >
+    <resultMap id="userMap" type="com.croplanet.memb.entity.User">
+        <id property="userId" column="user_id" javaType="java.lang.Long"></id>
+        <result property="name" column="name" javaType="java.lang.String"></result>
+        <result property="password" column="password" javaType="java.lang.String"></result>
+        <result property="salt" column="salt" javaType="java.lang.String"></result>
+        <result property="updateTime" column="update_time" javaType="java.lang.String"></result>
+        <result property="createTime" column="create_time" javaType="java.lang.String"></result>
+    </resultMap>
+
+    <select id="listUser" resultMap="userMap" parameterType="java.lang.Long" resultType="java.util.List">
+        select * from user where user_id = #{userId}
+    </select>
+
+</mapper>
