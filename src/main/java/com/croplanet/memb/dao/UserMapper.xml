@@ -11,7 +11,7 @@
     </resultMap>
 
     <select id="listUser" resultMap="userMap" parameterType="java.lang.Long" resultType="java.util.List">
-        select * from user where user_id = #{userId}
+        select * from `user` where user_id = #{userId}
     </select>
 
 </mapper>
