@@ -4,7 +4,6 @@ import com.croplanet.memb.configuration.constConfig.ConstLocalParamKeys;
 import com.croplanet.memb.utils.MyStringUtil;
 import com.croplanet.memb.runtime.http.local.LocalContextHolder;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;

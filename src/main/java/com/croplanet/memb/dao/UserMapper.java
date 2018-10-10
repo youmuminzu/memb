@@ -1,9 +1,10 @@
 package com.croplanet.memb.dao;
 
 import com.croplanet.memb.entity.User;
+import org.apache.ibatis.annotations.Mapper;
 
-import java.util.List;
 
-public interface UserDao {
-    public List<User> listUser(long userId);
+@Mapper
+public interface UserMapper {
+    public User listUser(long userId);
 }

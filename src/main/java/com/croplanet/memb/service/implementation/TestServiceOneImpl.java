@@ -1,6 +1,6 @@
 package com.croplanet.memb.service.implementation;
 
-import com.croplanet.memb.dao.UserDao;
+import com.croplanet.memb.dao.UserMapper;
 import com.croplanet.memb.entity.User;
 import com.croplanet.memb.service.interfacePackage.TestService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +12,7 @@ import java.util.List;
 public class TestServiceOneImpl implements TestService {
 
     @Autowired
-    private UserDao userDao;
+    private UserMapper userMapper;
 
     public String testOne() throws Exception {
         throw new Exception("service exception");
@@ -20,8 +20,8 @@ public class TestServiceOneImpl implements TestService {
     }
 
     @Override
-    public List<User> testUsingDataBase() {
-        List<User> result = userDao.listUser(1L);
+    public User testUsingDataBase() {
+        User result = userMapper.listUser(2L);
         return result;
     }
 }

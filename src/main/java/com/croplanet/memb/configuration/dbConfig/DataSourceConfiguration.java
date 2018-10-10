@@ -1,16 +1,25 @@
 package com.croplanet.memb.configuration.dbConfig;
 
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.mybatis.spring.SqlSessionFactoryBean;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.jdbc.datasource.DataSourceTransactionManager;
+import org.springframework.jdbc.datasource.lookup.AbstractRoutingDataSource;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.sql.DataSource;
 import java.util.HashMap;
 import java.util.Map;
 
 @Configuration
+@EnableTransactionManagement
+@AutoConfigureAfter
 public class DataSourceConfiguration {
 
     public enum Dbs {
@@ -35,6 +44,7 @@ public class DataSourceConfiguration {
 
         protected String name;
         protected String configMark;
+
         Dbs(String name, String configMark) {
             this.name = name;
             this.configMark = configMark;
@@ -59,6 +69,7 @@ public class DataSourceConfiguration {
 
     /**
      * all database source should be added in the allDataBases map
+     *
      * @return
      */
     public Map getAllDatabaseMap() {
@@ -67,5 +78,36 @@ public class DataSourceConfiguration {
         allDatabases.put(Dbs.db2.getName(), dataSourceTwo());
         return allDatabases;
     }
+
+    @Bean(name = "sqlSessionFactory")
+    public SqlSessionFactory sqlSessionFactory() {
+        SqlSessionFactoryBean sessionFactoryBean = new SqlSessionFactoryBean();
+        sessionFactoryBean.setDataSource(routingDataSourceProxy());
+
+        try {
+            return sessionFactoryBean.getObject();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return  null;
+        }
+    }
+
+    @Bean("routingDataSourceProxy")
+    public AbstractRoutingDataSource routingDataSourceProxy() {
+        Map targetDatabaseSourceMap = this.getAllDatabaseMap();
+        AbstractRoutingDataSource routingDataSourceProxy = new RoutingDataSource();
+        routingDataSourceProxy.setDefaultTargetDataSource(
+                targetDatabaseSourceMap.get(DataSourceConfiguration.Dbs.db1.getName()));
+        routingDataSourceProxy.setTargetDataSources(targetDatabaseSourceMap);
+        return routingDataSourceProxy;
+    }
+
+    @Bean(name = "clusterTransactionManager")
+    public DataSourceTransactionManager clusterTransactionManager(DataSource dataSource) {
+        DataSourceTransactionManager dataSourceTransactionManager = new DataSourceTransactionManager();
+        dataSourceTransactionManager.setDataSource(dataSource);
+        return dataSourceTransactionManager;
+    }
+
 
 }

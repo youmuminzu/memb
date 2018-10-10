@@ -16,7 +16,7 @@ public class RoutingDataSource extends AbstractRoutingDataSource {
 
     @Override
     protected Object determineCurrentLookupKey() {
-        //gave the dbName a default value to avoid mistakes
+        //give the dbName a default value to avoid mistakes
         String dbName = "db1";
         String userIdString = localContextHolder.getLocalValue(ConstLocalParamKeys.LOCAL_KEY_USER_ID);
         if (userIdString != null && !userIdString.equals("")) {
